@@ -1,11 +1,11 @@
 package com.melim.bookstore.modell;
 
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -16,8 +16,16 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Campo TÍTULO é requerido")
+    @Length(min = 3, max = 50, message = "O campo TÍTULO deve ter entre 3 e 100 caracteres")
     private String titulo;
+
+    @NotEmpty(message = "Campo NOME DO AUTOR é requerido")
+    @Length(min = 3, max = 50, message = "O campo NOME DO AUTOR deve ter entre 3 e 100 caracteres")
     private String nomeAutor;
+
+    @NotEmpty(message = "Campo TEXTO é requerido")
+    @Length(min = 10, max = 2000000, message = "O campo TEXTO deve ter entre 3 e 100 caracteres")
     private String texto;
 
     @JsonIgnore
